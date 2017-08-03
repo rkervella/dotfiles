@@ -1,0 +1,8 @@
+#! /usr/bin/zsh
+
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -lah'
+alias docker='sudo docker'
+alias grep='grep --color=auto'
+alias tmux='tmux -2'
