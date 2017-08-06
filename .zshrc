@@ -2,6 +2,8 @@
 # Enable history
 umask 022
 setopt APPEND_HISTORY
+export SAVEHIST=10000
+export HISTFILE=$HOME/.zsh_history
 # VCS
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
@@ -20,7 +22,6 @@ promptinit
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 # Case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
 autoload -U history-search-end
 # Menu selection
 zstyle ':completion:*' menu select
@@ -44,9 +45,16 @@ source $HOME/.zsh/zaliases
 export EDITOR=vim
 export GOPATH=$HOME/code/go
 export PATH=$PATH:/sbin:$GOPATH/bin
-export SAVEHIST=10000
-export HISTFILE=$HOME/.zsh_history
 
 # Fix arrow keys
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+
+# History search
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
+
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+[[ -n "${key[Up]}" ]] && bindkey "${key[Up]}" up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" down-line-or-beginning-search
