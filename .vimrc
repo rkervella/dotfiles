@@ -1,100 +1,135 @@
-set nocompatible
 filetype off
 
-" Vundle
+set path+=.,/usr/local/inclue,/usr/include,**
 set rtp+=~/.vim/bundle/Vundle.vim
-
 call vundle#begin()
+
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Shougo/neocomplete.vim'
+Plugin 'rust-lang/rust.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'fatih/vim-go'
-Plugin 'nvie/vim-flake8'
-"Plugin 'davidhalter/jedi-vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/emmet-vim'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'sheerun/vim-polyglot'
+Plugin 'CyCoreSystems/vim-cisco-ios'
+Plugin 'fatih/vim-go'
+Plugin 'xolox/vim-misc'
+Plugin 'vim-scripts/LargeFile'
+Plugin 'marshallward/vim-restructuredtext'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'PotatoesMaster/i3-vim-syntax'
+Plugin 'PProvost/vim-ps1'
+Plugin 'uarun/vim-protobuf'
+Plugin 'tbastos/vim-lua'
+Plugin 'elzr/vim-json'
+Plugin 'bumaociyuan/vim-swift'
+Plugin 'cespare/vim-toml'
+Plugin 'bfrg/vim-cpp-modern'
+Plugin 'davidhalter/jedi-vim'
+
 call vundle#end()
-
-syntax on
 filetype plugin indent on
-set autoindent
-set modeline
-set modelines=5
-
-" Colorscheme
+set ai
+syntax on
+set showcmd
+set mouse=a
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set notimeout
+set ttimeout
+" Colors
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 if (has("termguicolors"))
     set termguicolors
 endif
-let base16colorspace=256
+set t_Co=256
 set background=dark
 colorscheme hybrid
-set t_co=256
+set t_ut= "bug with tmux
+" Others
+set noswapfile
+set laststatus=2
 
-" General configuration
 set nu
 set cursorline
-syntax on
+let mapleader = ","
+nnoremap <leader>/ :let @/ = ""<CR>
+set ignorecase
 set incsearch
 set hlsearch
-set showcmd
-set bs=2
-set notimeout
-set laststatus=2
-set ruler
-set showcmd
-set noswapfile
-" Set space instead of tabs
-set expandtab
-set tabstop=4
-set shiftwidth=4
-" Remap leader
-let mapleader=','
-" Disable search highlighting
-nnoremap <Leader>/ :nohl<CR>
-" Auto close preview buffer
-autocmd CompleteDone * pclose
-" List chars
-set listchars=tab:→.,trail:.,extends:#,nbsp:.
 
-" Handy shortcut for indentation
 vnoremap > >gv
 vnoremap < <gv
 
-" Quick buffer switcher
-nnoremap <Leader>n :bnext<CR>
-nnoremap <Leader>N :bprevious<CR>
+" Tassin
+nnoremap <leader>t :!tassin build<CR>
+if filereadable(".tassin")
+    set makeprg=tassin\ build
+endif
+" Latex build formation
+nnoremap <leader>B :!pdflatex --shell-escape *.tex<CR>
+" Toggle spell check
+set spelllang=fr
+nnoremap <leader>s :set spell!<CR>
 
-" Airline config
-let g:airline_theme='tomorrow'
+" NERD Tree
+map <F3> :NERDTreeToggle<CR>
+
+" Tagbar
+map <F8> :TagbarToggle<CR>
+
+""" Airline configuration
+let g:airline_theme="tomorrow"
+" Some more stuff
+let g:airline_detect_crypt = 1
+let g:airline_detect_paste = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
 
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_branch = ''
-let g:airline_readonly = ''
-let g:airline_linenr = ''
+" Paste toggle on F2
+set pastetoggle=<F2>
 
-" Neocomplete
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" XML indent
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+" Dockerfile syntax on Dockerfile.exploit files
+au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+" Dockerfile syntax on Dockerfile.exploit files
+au BufNewFile,BufRead Vagrantfile set syntax=ruby
+" Call GoRun
+nnoremap <leader>G :GoRun<CR>
+
+" Auto close completion
+autocmd CompleteDone * pclose
+
+" Faster switch between buffers
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>b :bp<CR>
+
+" Pandoc markdown to html + open browser
+nnoremap <leader>k :!mkhtml echo expand('%:p')<CR>
+set conceallevel=2
+" vim-markdown adjust new list item indent
+let g:vim_markdown_new_list_item_indent = 2
+" vim-markdown disable folding
+let g:vim_markdown_folding_disabled = 1
 
 " vim-go
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1
+
+" Tabular rules
+if exists(":Tabularize")
+    nmap <leader>a= :Tabularize /=<CR>
+    vmap <leader>a= :Tabularize /=<CR>
+    nmap <leader>a: :Tabularize /:\zs<CR>
+    vmap <leader>a: :Tabularize /:\zs<CR>
+endif
