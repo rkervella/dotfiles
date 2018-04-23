@@ -1,0 +1,16 @@
+#! /bin/sh
+
+polybar bspwm &
+sxhkd &
+
+bspc monitor -d main dev www virt misc mail chat mon music others
+
+bspc config border_width         1
+bspc config window_gap          10
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Chromium desktop='^3'
+

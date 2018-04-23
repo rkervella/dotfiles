@@ -1,60 +1,75 @@
-# Created by newuser for 5.3.1
-# Enable history
-umask 022
-setopt APPEND_HISTORY
-export SAVEHIST=10000
-export HISTFILE=$HOME/.zsh_history
-# VCS
+HISTFILE=~/.histfile
+HISTSIZE=100000
+SAVEHIST=100000
+setopt appendhistory extendedglob no_share_history prompt_subst
+unsetopt autocd beep
+bindkey -e
+
+autoload -Uz compinit
+compinit
+
+# VCS (git, svn)
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr '%B%F{cyan}!%f%b'
-zstyle ':vcs_info:*' stagedstr '%B%F{magenta}+%f%b'
-zstyle ':vcs_info:*' formats '%u%c(%{%F{yellow}%}%b%{%f%})'
-function precmd() {
+precmd() {
     vcs_info
 }
+
 # Completion
-autoload -U compinit
-compinit
-autoload -U promptinit
-promptinit
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-# Case insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-autoload -U history-search-end
-# Menu selection
-zstyle ':completion:*' menu select
-# Reload hashes for command completion after install
-zstyle ':completion:*' rehash true
-# Prompt
-if [[ $UID == 0 || $EUID == 0 ]]; then
-    PROMPT='[%B%{%F{red}%}%n%{%f%}@%m%b]:%~ %# '
-else
-    PROMPT='[%B%{%F{blue}%}%n%{%f%}@%m%b]:%~ %# '
-fi
-setopt prompt_subst
-RPROMPT='${vcs_info_msg_0_} %T'
-# Backward kill
+eval $(dircolors -b)
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+
+zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:mv:*' ignore-line yes
+zstyle ':completion:*:cp:*' ignore-line yes
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+
+## VCS info
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:git*' formats "%m%u%c %F{cyan}%r%f (%F{yellow}%b%f)"
+zstyle ':vcs_info:git*' actionformats "%m%u%c %F{cyan}%r%f (%F{yellow}%a%f)"
+zstyle ':vcs_info:git*' unstagedstr '%F{yellow}✗%f'
+zstyle ':vcs_info:git*' stagedstr '%F{green}✚%f'
+zstyle ':vcs_info:git*' check-for-changes true
+zstyle ':vcs_info:git*' check-for-staged-changes true
+
+# Backward kill like bash
 autoload -U select-word-style
 select-word-style bash
 
-# Load aliases
-source $HOME/.zsh/zaliases
-# Exports
-export EDITOR=vim
-export GOPATH=$HOME/code/go
-export PATH=$PATH:/sbin:$GOPATH/bin
+# Shift-TAB to select backwards from completion menu
+bindkey '^[[Z' reverse-menu-complete
 
-# Fix arrow keys
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
-# History search
-autoload up-line-or-beginning-search
-autoload down-line-or-beginning-search
-
+# Command history with arrow keys
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-[[ -n "${key[Up]}" ]] && bindkey "${key[Up]}" up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
+
+# Ctrl + Arrows to navigate
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+# Home and End
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+# Delete key
+bindkey  "^[[3~"  delete-char
+bindkey  "^[3;5~" delete-char
+
+# Prompt
+PROMPT='%F{blue}%B%#%b%f %F{white}%B%~%b%f '
+RPROMPT='%B${vcs_info_msg_0_}%b'
+
+# Aliases
+source $HOME/.zsh/zaliases
+# Environment variables
+export EDITOR=vim
+export GOPATH=$HOME/code/golang/
+export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin
+export WORKON_HOME=$HOME/.virtualenvs
+# VirtualenvWrapper
+source /usr/bin/virtualenvwrapper_lazy.sh
