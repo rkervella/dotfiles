@@ -2,6 +2,9 @@
 
 polybar bspwm &
 sxhkd &
+nitrogen --restore &
+xautolock -detectsleep -time 3 -locker "betterlockscreen -l dim" -notify 30 -notifier "notify-send -u critical -t 1000 -- 'Locking screen in 30 seconds'" &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 bspc monitor -d main dev www virt misc mail chat mon music others
 
