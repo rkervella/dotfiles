@@ -1,0 +1,13 @@
+#! /bin/sh
+
+WINDOW_COUNT=$(bspc query -d focused -N | wc -l)
+IS_PRESELECT=$(bspc query -d focused -N -n .\!automatic.local)
+
+if [ -z "$IS_PRESELECT" ]; then
+    if [ "$WINDOW_COUNT" = "1" ]; then
+        echo "split_dir=east"
+    else
+        echo "split_dir=south"
+    fi
+#echo "split_ratio=0.5"
+fi
