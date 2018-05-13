@@ -3,8 +3,10 @@
 polybar bspwm &
 sxhkd &
 nitrogen --restore &
+compton -bc
 xautolock -detectsleep -time 3 -locker "betterlockscreen -l dim" -notify 30 -notifier "notify-send -u critical -t 1000 -- 'Locking screen in 30 seconds'" &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+xrdb -merge ~/.Xresources
 
 bspc monitor -d main dev www virt misc mail chat mon music others
 
@@ -15,6 +17,7 @@ bspc config split_ratio             0.52
 bspc config borderless_monocle      true
 bspc config gapless_monocle         true
 bspc config focus_follows_pointer   true
+bspc config external_rules_command "$HOME/.config/bspwm/split_rule"
 
 bspc rule -a Chromium desktop='^3'
-
+bspc rule -a Virt-manager desktop='^4'
