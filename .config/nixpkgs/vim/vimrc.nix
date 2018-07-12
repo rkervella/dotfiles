@@ -11,6 +11,7 @@
       set expandtab
       set notimeout
       set ttimeout
+      set backspace=indent eol start
       " Colors
       if (has("termguicolors"))
           set termguicolors

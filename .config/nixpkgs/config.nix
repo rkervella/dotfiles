@@ -61,6 +61,9 @@ in
         rustup
         gdb
         notify-osd
+        arc-theme
+        lxappearance
+        tango-icon-theme
       ];
     };
   };
