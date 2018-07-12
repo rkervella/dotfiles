@@ -14,6 +14,8 @@ precmd() {
     vcs_info
 }
 
+# Auto rehash
+zstyle ':completion:*' rehash true
 # Completion
 eval $(dircolors -b)
 zstyle ':completion:*' menu select=2
@@ -71,5 +73,3 @@ export EDITOR=vim
 export GOPATH=$HOME/code/golang/
 export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin
 export WORKON_HOME=$HOME/.virtualenvs
-# VirtualenvWrapper
-source /usr/bin/virtualenvwrapper_lazy.sh

@@ -5,8 +5,9 @@ sxhkd &
 nitrogen --restore &
 compton -bc
 xautolock -detectsleep -time 3 -locker "betterlockscreen -l dim" -notify 30 -notifier "notify-send -u critical -t 1000 -- 'Locking screen in 30 seconds'" &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 xrdb -merge ~/.Xresources
+feh --bg-center $HOME/pictures/jin.jpg
+usbguard-applet-qt &
 
 bspc monitor -d main dev www virt misc mail chat mon music others
 
@@ -21,3 +22,4 @@ bspc config external_rules_command "$HOME/.config/bspwm/split_rule"
 
 bspc rule -a Chromium desktop='^3'
 bspc rule -a Virt-manager desktop='^4'
+bspc rule -a TelegramDesktop desktop='^7'
