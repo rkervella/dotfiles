@@ -1,15 +1,33 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
-polybar bspwm &
+pkill sxhkd
+pkill compton
 sxhkd &
 nitrogen --restore &
 compton -bc
 xautolock -detectsleep -time 3 -locker "betterlockscreen -l dim" -notify 30 -notifier "notify-send -u critical -t 1000 -- 'Locking screen in 30 seconds'" &
 xrdb -merge ~/.Xresources
-feh --bg-center $HOME/pictures/jin.jpg
 usbguard-applet-qt &
 
-bspc monitor -d main dev www virt misc mail chat mon music others
+MAIN_MON="eDP-1"
+SEC_MOND="";
+if [ $(polybar --list-monitors | cut -d ':' -f1 | wc -l) -gt 1 ]; then
+    if [[ $(polybar --list-monitors) = *"HDMI-1"*  ]]; then
+        SEC_MON="HDMI-1"
+    else
+        MAIN_MON="DP-2-8"
+        SEC_MON="DP-2-1"
+    fi
+    bspc monitor $MAIN_MON -d main dev www others
+    bspc monitor $SEC_MON -d virt misc mail chat mon music
+    MONITOR=$MAIN_MON polybar --reload bspwm-main &
+    MONITOR=$SEC_MON polybar --reload bspwm-sec &
+else
+    MONITOR=$MAIN_MON polybar --reload bspwm &
+    bspc monitor -d main dev www virt misc mail chat mon music others
+fi
+
+#bspc monitor -d main dev www virt misc mail chat mon music others
 
 bspc config border_width            1
 bspc config window_gap              10
@@ -20,6 +38,6 @@ bspc config gapless_monocle         true
 bspc config focus_follows_pointer   true
 bspc config external_rules_command "$HOME/.config/bspwm/split_rule"
 
-bspc rule -a Chromium desktop='^3'
-bspc rule -a Virt-manager desktop='^4'
-bspc rule -a TelegramDesktop desktop='^7'
+bspc rule -a Chromium desktop='www'
+bspc rule -a Virt-manager desktop='virt'
+bspc rule -a TelegramDesktop desktop='chat'

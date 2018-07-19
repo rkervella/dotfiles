@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + d
-    rofi -show run
+    rofi -font DejaVu\ 9 -show run
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -85,7 +85,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
-    bspc {desktop -f,node -d} '^{1-9,10}'
+    bspc {desktop -f,node -d} '{main,dev,www,virt,misc,mail,chat,mon,music,others}'
 
 #
 # preselect

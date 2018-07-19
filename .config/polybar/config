@@ -20,9 +20,9 @@ alert = #bd2c40
 urgent = #cc6666
 
 [bar/bspwm]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:}
 width = 100%
-height = 20
+height = 18
 offset-x = 0
 offset-y = 0
 radius = 0
@@ -43,12 +43,14 @@ padding-right = 1
 module-margin-left = 2
 module-margin-right = 2
 
-font-0 = Font Awesome :pixelsize=11;3
-font-1 = DejaVu Sans:pixelsize=10;3
+font-0 = Font Awesome 5 Brands Regular:pixelsize=9;3
+font-1 = Font Awesome 5 Free Regular:pixelsize=9;3
+font-2 = Font Awesome 5 Free Solid:pixelsize=9;3
+font-3 = DejaVu Sans:pixelsize=9;3
 
-modules-left = bspwm
-modules-center = date
-modules-right = wlan eth battery
+modules-left = bspwm-main
+modules-center = xwindow
+modules-right = wireless-network wired-network battery date
 
 tray-position = right
 tray-padding = 4
@@ -62,6 +64,16 @@ scroll-down = bspwm-deskprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[bar/bspwm-main]
+inherit = bar/bspwm
+modules-left = bspwm-main
+monitor = ${env:MONITOR:}
+
+[bar/bspwm-sec]
+inherit = bar/bspwm
+modules-left = bspwm-sec
+monitor = ${env:MONITOR:}
 
 [module/xwindow]
 type = internal/xwindow
@@ -99,59 +111,27 @@ label-empty = %icon%
 label-empty-foreground = ${colors.foreground-unfocused}
 label-empty-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = true
-strip-wsnumbers = true
-
+[module/bspwm-main]
+inherit = module/bspwm
 # Icons
-ws-icon-0 = 1:main;
-ws-icon-1 = 2:dev;
-ws-icon-2 = 3:www;
-ws-icon-3 = 4:virt;
-ws-icon-4 = 5:misc;
-ws-icon-5 = 6:mail;
-ws-icon-6 = 7:chat;
-ws-icon-7 = 8:mon;
-ws-icon-8 = 9:music;
-ws-icon-9 = 10;
+ws-icon-0 = main;
+ws-icon-1 = dev;
+ws-icon-2 = www;
+ws-icon-9 = others;
 ws-icon-default = 
 
-; Only show workspaces on the same output as the bar
-pin-workspaces = true
+[module/bspwm-sec]
+inherit = module/bspwm
 
-label-mode-padding = 2
-label-mode-foreground = #FFFFFF
-label-mode-background = ${colors.background}
+ws-icon-4 = virt;
+ws-icon-5 = misc;
+ws-icon-6 = mail;
+ws-icon-7 = chat;
+ws-icon-8 = mon;
+ws-icon-9 = music;
 
-; focused = Active workspace on focused monitor
-label-focused = %icon%
-label-focused-background = ${colors.background}
-label-focused-foreground = ${colors.foreground}
-label-focused-underline = ${colors.background-alt}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %icon%
-label-unfocused-foreground = ${colors.foreground-unfocused}
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${colors.background}
-label-visible-underline = ${colors.background}
-label-visible-padding = 2
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.urgent}
-label-urgent-padding = 2
-
+; Separator in between workspaces
+; label-separator = |
 
 [module/cpu]
 type = internal/cpu
@@ -169,9 +149,9 @@ format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.background}
 label = "%percentage_used%"
 
-[module/wlan]
+[module/wireless-network]
 type = internal/network
-interface = wlp4s0
+interface = wlp3s0
 interval = 3.0
 
 format-connected = <label-connected>
@@ -184,7 +164,7 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/eth]
+[module/wired-network]
 type = internal/network
 interface = enp0s31f6
 interval = 3.0
