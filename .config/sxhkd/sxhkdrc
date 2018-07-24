@@ -87,6 +87,11 @@ super + {o,i}
 super + {_,shift + }{ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
     bspc {desktop -f,node -d} '{main,dev,www,virt,misc,mail,chat,mon,music,others}'
 
+super + shift + p
+    desk=$(bspc query -D -d focused); \
+    bspc desktop -m next; \
+    bspc monitor -f next; \
+    bspc desktop -f $desk
 #
 # preselect
 #
