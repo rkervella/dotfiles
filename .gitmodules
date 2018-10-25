@@ -1,0 +1,96 @@
+[submodule "vim/pack/plugins/start/vim-addon-mw-utils"]
+	path = vim/pack/plugins/start/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils
+[submodule "vim/pack/plugins/start/vim-hybrid-material"]
+	path = vim/pack/plugins/start/vim-hybrid-material
+	url = https://github.com/kristijanhusak/vim-hybrid-material
+[submodule "vim/pack/plugins/start/rust.vim"]
+	path = vim/pack/plugins/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim
+[submodule "vim/pack/plugins/start/tlib_vim"]
+	path = vim/pack/plugins/start/tlib_vim
+	url = https://github.com/tomtom/tlib_vim
+[submodule "vim/pack/plugins/start/ctrlp.vim"]
+	path = vim/pack/plugins/start/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim
+[submodule "vim/pack/plugins/start/vim-snipmate"]
+	path = vim/pack/plugins/start/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate
+[submodule "vim/pack/plugins/start/vim-snippets"]
+	path = vim/pack/plugins/start/vim-snippets
+	url = https://github.com/honza/vim-snippets
+[submodule "vim/pack/plugins/start/tagbar"]
+	path = vim/pack/plugins/start/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "vim/pack/plugins/start/vim-virtualenv"]
+	path = vim/pack/plugins/start/vim-virtualenv
+	url = https://github.com/jmcantrell/vim-virtualenv
+[submodule "vim/pack/plugins/start/Vim-Jinja2-Syntax"]
+	path = vim/pack/plugins/start/Vim-Jinja2-Syntax
+	url = https://github.com/Glench/Vim-Jinja2-Syntax
+[submodule "vim/pack/plugins/start/vim-airline"]
+	path = vim/pack/plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "vim/pack/plugins/start/vim-cisco-ios"]
+	path = vim/pack/plugins/start/vim-cisco-ios
+	url = https://github.com/CyCoreSystems/vim-cisco-ios
+[submodule "vim/pack/plugins/start/LargeFile"]
+	path = vim/pack/plugins/start/LargeFile
+	url = https://github.com/vim-scripts/LargeFile
+[submodule "vim/pack/plugins/start/tabular"]
+	path = vim/pack/plugins/start/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "vim/pack/plugins/start/vim-airline-themes"]
+	path = vim/pack/plugins/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/pack/plugins/start/vim-misc"]
+	path = vim/pack/plugins/start/vim-misc
+	url = https://github.com/xolox/vim-misc
+[submodule "vim/pack/plugins/start/i3-vim-syntax"]
+	path = vim/pack/plugins/start/i3-vim-syntax
+	url = https://github.com/PotatoesMaster/i3-vim-syntax
+[submodule "vim/pack/plugins/start/vim-go"]
+	path = vim/pack/plugins/start/vim-go
+	url = https://github.com/fatih/vim-go
+[submodule "vim/pack/plugins/start/vim-fugitive"]
+	path = vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/pack/plugins/start/emmet-vim"]
+	path = vim/pack/plugins/start/emmet-vim
+	url = https://github.com/mattn/emmet-vim
+[submodule "vim/pack/plugins/start/vim-protobuf"]
+	path = vim/pack/plugins/start/vim-protobuf
+	url = https://github.com/uarun/vim-protobuf
+[submodule "vim/pack/plugins/start/vim-ps1"]
+	path = vim/pack/plugins/start/vim-ps1
+	url = https://github.com/PProvost/vim-ps1
+[submodule "vim/pack/plugins/start/vim-lua"]
+	path = vim/pack/plugins/start/vim-lua
+	url = https://github.com/tbastos/vim-lua
+[submodule "vim/pack/plugins/start/vim-json"]
+	path = vim/pack/plugins/start/vim-json
+	url = https://github.com/elzr/vim-json
+[submodule "vim/pack/plugins/start/vim-swift"]
+	path = vim/pack/plugins/start/vim-swift
+	url = https://github.com/bumaociyuan/vim-swift
+[submodule "vim/pack/plugins/start/vim-textile"]
+	path = vim/pack/plugins/start/vim-textile
+	url = https://github.com/amiorin/vim-textile
+[submodule "vim/pack/plugins/start/vim-toml"]
+	path = vim/pack/plugins/start/vim-toml
+	url = https://github.com/cespare/vim-toml
+[submodule "vim/pack/plugins/start/vim-markdown"]
+	path = vim/pack/plugins/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown
+[submodule "vim/pack/plugins/start/vim-cpp-modern"]
+	path = vim/pack/plugins/start/vim-cpp-modern
+	url = https://github.com/bfrg/vim-cpp-modern
+[submodule "vim/pack/plugins/start/vim-objc"]
+	path = vim/pack/plugins/start/vim-objc
+	url = https://github.com/b4winckler/vim-objc
+[submodule "vim/pack/plugins/start/nord-vim"]
+	path = vim/pack/plugins/start/nord-vim
+	url = https://github.com/arcticicestudio/nord-vim
+[submodule "vim/pack/plugins/start/jedi-vim"]
+	path = vim/pack/plugins/start/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim
