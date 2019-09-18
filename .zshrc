@@ -6,13 +6,18 @@ unsetopt autocd beep
 bindkey -e
 
 autoload -Uz compinit
-compinit
+compinit -i
 
 # VCS (git, svn)
 autoload -Uz vcs_info
 precmd() {
     vcs_info
 }
+
+fpath=($HOME/.zsh/completion/ $fpath)
+
+# set vi mode
+set -o vi
 
 # Auto rehash
 zstyle ':completion:*' rehash true
@@ -62,14 +67,41 @@ bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 bindkey  "^[3;5~" delete-char
 
+# navigation in vi mode
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^U' backward-kill-line
+bindkey '^A' vi-beginning-of-line
+bindkey '^E' vi-end-of-line
+
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^k' kill-line
+bindkey '^r' history-incremental-search-backward
+
 # Prompt
 PROMPT='%F{blue}%B%#%b%f %F{white}%B%~%b%f '
 RPROMPT='%B${vcs_info_msg_0_}%b'
 
 # Aliases
 source $HOME/.zsh/zaliases
+# Custom functions
+source $HOME/.zsh/zfunctions.zsh
 # Environment variables
 export EDITOR=vim
 export GOPATH=$HOME/code/golang/
-export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin
+export GOROOT=/usr/local/go/
+export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin:$HOME/Android/Sdk/tools/:$HOME/Android/Sdk/build-tools/28.0.3:$HOME/Android/Sdk/platform-tools:/usr/local/go/bin:$HOME/tools/exploit/metasploit-framework/:/opt/pentest/bin
 export WORKON_HOME=$HOME/.virtualenvs
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+# Virtualenvwrapper
+source $HOME/.local/bin/virtualenvwrapper_lazy.sh
+# hub
+eval "$(hub alias -s)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/lesnuages/downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/lesnuages/downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/lesnuages/downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/lesnuages/downloads/google-cloud-sdk/completion.zsh.inc'; fi
