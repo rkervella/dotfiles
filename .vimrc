@@ -30,6 +30,7 @@ Plugin 'bumaociyuan/vim-swift'
 Plugin 'cespare/vim-toml'
 Plugin 'bfrg/vim-cpp-modern'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'arcticicestudio/nord-vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -42,14 +43,21 @@ set shiftwidth=4
 set expandtab
 set notimeout
 set ttimeout
+set ttyfast
+set smartcase
 " Colors
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-if (has("termguicolors"))
-    set termguicolors
+if exists("$TMUX")
+        set t_Co=256
+        set notermguicolors
+else
+        set termguicolors
 endif
+"if (has("termguicolors"))
+"    set termguicolors
+"endif
 set t_Co=256
 set background=dark
-colorscheme hybrid
+colorscheme nord
 set t_ut= "bug with tmux
 " Others
 set noswapfile
@@ -66,15 +74,8 @@ set hlsearch
 vnoremap > >gv
 vnoremap < <gv
 
-" Tassin
-nnoremap <leader>t :!tassin build<CR>
-if filereadable(".tassin")
-    set makeprg=tassin\ build
-endif
-" Latex build formation
-nnoremap <leader>B :!pdflatex --shell-escape *.tex<CR>
 " Toggle spell check
-set spelllang=fr
+set spelllang=en
 nnoremap <leader>s :set spell!<CR>
 
 " NERD Tree
@@ -84,7 +85,7 @@ map <F3> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 
 """ Airline configuration
-let g:airline_theme="tomorrow"
+"let g:airline_theme="tomorrow"
 " Some more stuff
 let g:airline_detect_crypt = 1
 let g:airline_detect_paste = 1
@@ -109,6 +110,12 @@ autocmd CompleteDone * pclose
 " Faster switch between buffers
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>b :bp<CR>
+
+" Reopen at same line
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+
 
 " Pandoc markdown to html + open browser
 nnoremap <leader>k :!mkhtml echo expand('%:p')<CR>
