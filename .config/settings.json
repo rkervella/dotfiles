@@ -1,0 +1,168 @@
+{
+  // Debugging
+  "debug.toolBarLocation": "docked",
+  "team.showWelcomeMessage": false,
+  // Disable telemetry
+  "telemetry.enableTelemetry": false,
+  // Workbench specifuc settings
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.settings.editor": "ui",
+  "workbench.colorTheme": "Nord",
+  // Customization to match i3 nord theme
+  "workbench.colorCustomizations": {
+    // Nord theme customizations - darker blue
+    "[Nord]": {
+      "statusBarItem.remoteBackground": "#5e81ac",
+      "statusBarItem.remoteForeground": "#ffffff",
+      // Debugging
+      "statusBar.debuggingBackground": "#5e81ac",
+      "statusBar.debuggingForeground": "#ffffff",
+      // Lists
+      "list.activeSelectionBackground": "#5e81ac",
+      "list.activeSelectionForeground": "#ffffff",
+      // Activity bar badges (git, updates, etc.)
+      "activityBarBadge.background": "#5e81ac",
+      "activityBarBadge.foreground": "#ffffff",
+      // Activity bar indicator
+      "activityBar.activeBorder": "#5e81ac",
+    },
+  },
+  // Git
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.untrackedChanges": "separate",
+  // Window settings
+  "window.titleBarStyle": "native",
+  "window.menuBarVisibility": "hidden",
+  "window.restoreWindows": "none",
+  // Editor settings
+  "editor.fontSize": 12.5,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "'Fira Code', 'DejaVu Sans Mono'",
+  // "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.tabCompletion": "onlySnippets",
+  "editor.cursorBlinking": "solid",
+  "editor.wordWrap": "on",
+  "editor.suggestSelection": "first",
+  "editor.formatOnSave": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  // Extensions
+  "extensions.ignoreRecommendations": true,
+  // vim
+  "vim.showmodename": true,
+  "vim.handleKeys": {
+    "<C-f>": false,
+    "<C-h>": false,
+    "<C-o>": false,
+    "<C-k>": false,
+    "<C-n>": false,
+    "<C-Shift-e>": false,
+    "<C-b>": false
+  },
+  "vim.hlsearch": true,
+  "vim.leader": ",",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "<leader>",
+        "/"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    },
+    {
+      "before": [
+        "Z",
+        "Q"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "Z",
+        "Z"
+      ],
+      "commands": [
+        ":wq"
+      ]
+    }
+  ],
+  // Golang
+  "go.gopath": "/home/lesnuages/code/golang",
+  "go.inferGopath": true,
+  "go.delveConfig": {
+    "apiVersion": 2
+  },
+  "go.buildOnSave": "package",
+  "go.goroot": "/usr/local/go",
+  "go.toolsGopath": "/home/lesnuages/code/go",
+  "go.vetOnSave": "off",
+  "go.useLanguageServer": true,
+  "go.installDependenciesWhenBuilding": false,
+  // "go.languageServerExperimentalFeatures": {
+  //   "format": true,
+  //   "autoComplete": true,
+  //   "rename": true,
+  //   "goToDefinition": true,
+  //   "hover": true,
+  //   "signatureHelp": true,
+  //   "goToTypeDefinition": true,
+  //   "goToImplementation": true,
+  //   "documentSymbols": true,
+  //   "workspaceSymbols": true,
+  //   "findReferences": true,
+  //   "diagnostics": true,
+  //   "documentLink": true
+  // },
+  // Java
+  "java.errors.incompleteClasspath.severity": "ignore",
+  // Liveshare
+  "liveshare.guestApprovalRequired": true,
+  // Terminal
+  "terminal.integrated.showExitAlert": false,
+  "terminal.external.linuxExec": "alacritty",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.fontFamily": "DejaVu Sans Mono",
+  // Explorer
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // Files association
+  "files.associations": {
+    // ...
+    "**/.i3/config": "i3",
+    "**/i3/config": "i3",
+    "**/sway/config": "i3",
+    "**/waybar/config": "json",
+    // ...
+  },
+  "python.jediEnabled": false,
+  "go.formatTool": "goimports",
+  "workbench.activityBar.visible": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "C_Cpp.updateChannel": "Insiders",
+  "window.zoomLevel": 0,
+}
