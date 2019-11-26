@@ -107,7 +107,6 @@
   },
   "go.buildOnSave": "package",
   "go.goroot": "/usr/local/go",
-  "go.toolsGopath": "/home/lesnuages/code/go",
   "go.vetOnSave": "off",
   "go.useLanguageServer": true,
   "go.installDependenciesWhenBuilding": false,
